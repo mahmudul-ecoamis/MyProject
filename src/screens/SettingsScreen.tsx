@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import React from 'react'
+import SwipeBackWrapper from '../components/SwipeBackWrapper'
+
 
 const SettingsScreen = () => {
   return (
-    <View style={styles.container}>
+    <SwipeBackWrapper>
       <Text style={styles.text}> This is SettingsScreen</Text>
-    </View>
+    </SwipeBackWrapper>
   )
 }
 

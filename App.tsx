@@ -1,8 +1,10 @@
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Icon from 'react-native-vector-icons/Ionicons'; // ✅ Use Ionicons from CLI package
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import logo from './src/images/logo.png';
 
@@ -20,38 +22,46 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={({ navigation }) => ({
-          headerTitle: '', // hides default title
-          headerLeft: () => (
-            <Image
-              source={logo}
-              style={{ width: 36, height: 36, marginLeft: 10 }}
-              resizeMode="contain"
-            />
-          ),
-          headerRight: () => (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate('Settings', { userName: 'DefaultUser' })
-              }
-              style={{ marginRight: 15 }}
-            >
-              <Icon name="menu" size={24} color="black" />
-            </TouchableOpacity>
-          ),
-          headerBackVisible: true,
-          headerBackTitle: 'Back',
-        })}
-      >
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="About" component={AboutScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={({ navigation }) => ({
+            gestureEnabled: true, 
+            gestureDirection: 'horizontal',
+            headerTitle: '',
+            headerLeft: () => (
+              <Image
+                source={logo}
+                style={{ width: 36, height: 36, marginLeft: 10 }}
+                resizeMode="contain"
+              />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Settings', { userName: 'DefaultUser' })
+                }
+                style={{ marginRight: 15 }}
+              >
+                <Icon name="menu" size={24} color="black" />
+              </TouchableOpacity>
+            ),
+            headerBackVisible: true,
+            headerBackTitle: 'Back',
+          })}
+        >
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="About" component={AboutScreen}  options={{
+    gestureEnabled: true,
+    gestureDirection: 'horizontal',
+  }} />
+          <Stack.Screen name="Settings" component={SettingsScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
+
 
 export default App;
