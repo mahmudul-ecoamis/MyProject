@@ -22,7 +22,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const HeaderLeft = () => (
   <Image
     source={logo}
-    style={{ width: 36, height: 36, marginLeft: 10 }}
+    style={{ width: 100, height: 36, marginLeft:-5 }}
     resizeMode="contain"
   />
 );
@@ -62,7 +62,9 @@ function App() {
             headerLeft: renderHeaderLeft,
             headerRight: renderHeaderRight(navigation),
             headerBackVisible: true,
+            
             headerBackTitle: 'Back',
+            
           })}
         >
           <Stack.Screen name="Home" component={HomeScreen} />
